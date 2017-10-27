@@ -15,15 +15,16 @@ gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'turbolinks', '~> 5.0.0'
 gem 'uglifier', '>= 1.3.0'
-
+gem 'web-console', group: :development
 group :development, :test do
   gem 'byebug', '~> 9.1'
-  gem 'factory_girl_rails', '~> 4.9'
+  gem 'factory_bot_rails'
   gem 'launchy', '~> 2.4', '>= 2.4.3'
   gem 'pry-rails', '~> 0.3.6'
+  gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.0'
+  gem 'simplecov'
   gem 'spring', '~> 2.0', '>= 2.0.2'
-  gem 'web-console', '~> 3.5', '>= 3.5.1'
 end
 
 group :test do

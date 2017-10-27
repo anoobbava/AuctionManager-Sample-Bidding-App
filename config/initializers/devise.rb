@@ -73,7 +73,7 @@ Devise.setup do |config|
   # to behave the same regardless if the e-mail provided was right or wrong.
   # Does not affect registerable.
   # config.paranoid = true
-
+  config.secret_key = 'c730a0471daf9a6b2e3467235b4d73b386a43bf2cc5491fd1c90f6e90593cf7cf6ea3d10026f3ffa1f0b3829d1de54a60c3d883af08edf7e66b104d0c1be801f'
   # By default Devise will store the user in session. You can skip storage for
   # particular strategies by setting this option.
   # Notice that if you are skipping storage for all authentication paths, you

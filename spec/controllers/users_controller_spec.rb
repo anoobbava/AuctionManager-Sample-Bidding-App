@@ -1,63 +1,64 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe Admin::UsersController, type: :controller do
-	before (:each) do
-    @role = FactoryGirl.create(:role , :name => "admin")
-    @designation = FactoryGirl.create(:designation , :designation_name => "Trainee")
-    @user = FactoryGirl.create(:admin_user,:role => @role)
+
+  before(:each) do
+    @role = FactoryBot.create(:role, name: 'admin')
+    @designation = FactoryBot.create(:designation, designation_name: 'Trainee')
+    @user = FactoryBot.create(:admin_user, role: @role)
     sign_in @user
   end
  
-  describe "GET #index" do
-    it "renders index view" do
+  describe 'GET #index' do
+
+    it 'Render index Page' do
       get :index
-      expect(response).to render_template("index")
+      expect(response).to render_template('index')
     end
 
-    it "assigns users" do 
+    it 'Render index Page' do
       get :index
-      expect(assigns(:users)).to eq([@user]) 
-    end   
-  end
-
-  describe "GET #show" do 
-    it "assigns requested user to @user" do 
-      get :show, id: @user 
-      expect(assigns(:user)).to eq(@user) 
-    end 
-
-    it "renders the #show view" do 
-      get :show, id: @user
-      expect(response).to render_template :show 
-    end 
-  end 
-  describe "GET #new" do
-    it "should create a new registration page" do
-      get :new
-      expect(response).to render_template("new")
+      expect(response.status).to eq(200)
     end
   end
 
-  describe 'POST #create' do
-    context 'with valid details' do
-      it 'creates user' do
-        post :create, user: FactoryGirl.attributes_for(:user,:role_id => @role,:designation_id => @designation) 
-        @user = User.last 
-        expect(response).to redirect_to [:admin,@user]
-      end
+  describe 'GET #show' do
+
+    it 'Assign requested user to @user' do
+      get :show, params: { id: @user }
+      expect(assigns(:user)).to eq(@user)
     end
-    context 'when form is invalid' do
-      it 'renders the page with error' do
-        post :create, user: FactoryGirl.attributes_for(:user,:first_name => "",:role_id => @role,:designation_id => @designation)  
-        expect(response).to render_template("new")
-      end
+
+    it 'Renders the #show Page' do
+      get :show, params: { id: @user }
+      expect(response).to render_template :show
+    end
+
+    it 'Response to be 200' do
+      get :show, params: { id: @user }
+      expect(response.status).to eq(200)
     end
   end
-  
-  describe "GET #delete" do
-    it "redirects to admin  index" do 
-     	delete :destroy, id: @user 
-     	expect(response).to redirect_to admin_users_path
-   	end
-  end  	
+
+  describe 'GET #edit' do
+
+    it 'response to be 200'do
+      get :edit, params: { id: @user }
+      expect(response.status).to eq 200
+    end
+  end
+
+  describe 'POST #Update' do
+    params = FactoryBot.attributes_for(:user2)
+
+    it 'response to be 302' do
+      post :update, params: { id: @user, user: params }
+      expect(response.status).to eq(302)
+    end
+
+    it 'redirect' do
+      post :update, params: { id: @user, user: params }
+      expect(response).to redirect_to("/admin/users/#{@user.id}")
+    end
+  end
 end

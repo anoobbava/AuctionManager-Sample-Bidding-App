@@ -1,6 +1,6 @@
-FactoryGirl.define do
-  factory :team do
+# FactoryBot.define do
+#   factory :team do
     
-  end
+#   end
 
-end
+# end

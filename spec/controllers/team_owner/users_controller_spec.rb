@@ -1,5 +1,5 @@
-require 'rails_helper'
+# require 'spec_helper'
 
-RSpec.describe TeamOwner::UsersController, type: :controller do
+# RSpec.describe TeamOwner::UsersController, type: :controller do
 
-end
+# end

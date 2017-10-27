@@ -1,5 +1,5 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :designation do
-    designation_name "Trainee"
+    designation_name 'Trainee'
   end
 end
